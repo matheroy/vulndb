@@ -7,7 +7,7 @@ import logging
 TODAY = datetime.datetime.today()
 TIMESTAMP = f'{TODAY.month}-{TODAY.day}-{TODAY.year}'
 
-LOG_FILE_LOC = os.getcwd()
+LOG_FILE_LOC = f'{os.getcwd()}\\logs'
 LOG_FILE_NAME = f'vuln_db_{TIMESTAMP}.log'
 LOG_FORMAT = "%(levelname)s %(asctime)s - %(message)s"
 LOG_FILE = f'{LOG_FILE_LOC}\\{LOG_FILE_NAME}' # logging module will auto create if not found

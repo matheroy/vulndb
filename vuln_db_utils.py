@@ -2,6 +2,7 @@
 
 
 import os
+import time
 import datetime
 import json
 import vulndb_sqllite_manage as sqlDbm
@@ -85,7 +86,29 @@ class SeedData:
     def close(self):
         self.file.close()
         
+
+class Sleep:
+    '''class that will allow the app to manage checks for data updates'''
     
+    def __init__(self, sleep_min=3600):
+        self.sleep_min = sleep_min
+        self.TODAY = datetime.datetime.today()
+        self.timestamp = f'{self.TODAY.year}-{self.TODAY.month}-{self.TODAY.day}'
+        
+    def job_run(self):
+        sel_query = f'select run_date, run_time from job_run_check \
+                       where run_date={self.timestamp}'
+        self.run_date, self.run_time = CURSOR.execute(sel_query)
+        if self.run_date == None:
+            return None
+            
+    def sleeper(self):
+        time.sleep(self.sleep_min)
+            
+        
+        
+        
+        
 
 def main():
     '''run any processess for stand alone processs'''
